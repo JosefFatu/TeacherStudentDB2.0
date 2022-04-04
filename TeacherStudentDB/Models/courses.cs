@@ -2,10 +2,10 @@
 {
     public class courses
     {
-        public int courseId { get; set; }
+        public int coursesId { get; set; }
 
-        public int teacherId { get; set; }
+        public string teacherId { get; set; }
 
-        public int studentId { get; set; }
+        public string studentId { get; set; }
     }
 }

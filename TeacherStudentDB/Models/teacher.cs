@@ -7,7 +7,7 @@ namespace TeacherStudentDB.Models
 {
     public class teacher
     {
-        public int teacherId { get; set; }
+        public string teacherId { get; set; }
 
         public string firstName { get; set; }
 
