@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace TeacherStudentDB.Migrations
 {
     [DbContext(typeof(TeacherStudentDBContext))]
-    [Migration("20220404023328_teacher")]
+    [Migration("20220406001824_teacher")]
     partial class teacher
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,8 +39,8 @@ namespace TeacherStudentDB.Migrations
                     b.Property<int?>("studentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("teacherId")
-                        .HasColumnType("int");
+                    b.Property<string>("teacherId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("classroomId");
 
@@ -49,6 +49,24 @@ namespace TeacherStudentDB.Migrations
                     b.HasIndex("teacherId");
 
                     b.ToTable("classroom");
+                });
+
+            modelBuilder.Entity("TeacherStudentDB.Models.courses", b =>
+                {
+                    b.Property<int>("coursesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("studentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("teacherId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("coursesId");
+
+                    b.ToTable("courses");
                 });
 
             modelBuilder.Entity("TeacherStudentDB.Models.student", b =>
@@ -83,10 +101,8 @@ namespace TeacherStudentDB.Migrations
 
             modelBuilder.Entity("TeacherStudentDB.Models.teacher", b =>
                 {
-                    b.Property<int>("teacherId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("teacherId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("age")
                         .HasColumnType("int");

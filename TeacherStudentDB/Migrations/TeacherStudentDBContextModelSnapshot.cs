@@ -37,8 +37,8 @@ namespace TeacherStudentDB.Migrations
                     b.Property<int?>("studentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("teacherId")
-                        .HasColumnType("int");
+                    b.Property<string>("teacherId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("classroomId");
 
@@ -56,11 +56,11 @@ namespace TeacherStudentDB.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("studentId")
-                        .HasColumnType("int");
+                    b.Property<string>("studentId")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("teacherId")
-                        .HasColumnType("int");
+                    b.Property<string>("teacherId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("coursesId");
 
@@ -99,10 +99,8 @@ namespace TeacherStudentDB.Migrations
 
             modelBuilder.Entity("TeacherStudentDB.Models.teacher", b =>
                 {
-                    b.Property<int>("teacherId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("teacherId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("age")
                         .HasColumnType("int");

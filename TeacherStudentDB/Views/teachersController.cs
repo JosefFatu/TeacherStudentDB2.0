@@ -25,7 +25,7 @@ namespace TeacherStudentDB.Views
         }
 
         // GET: teachers/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -65,7 +65,7 @@ namespace TeacherStudentDB.Views
         }
 
         // GET: teachers/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
@@ -85,7 +85,7 @@ namespace TeacherStudentDB.Views
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("teacherId,firstName,lastName,gender,age")] teacher teacher)
+        public async Task<IActionResult> Edit(string id, [Bind("teacherId,firstName,lastName,gender,age")] teacher teacher)
         {
             if (id != teacher.teacherId)
             {
@@ -116,7 +116,7 @@ namespace TeacherStudentDB.Views
         }
 
         // GET: teachers/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -136,7 +136,7 @@ namespace TeacherStudentDB.Views
         // POST: teachers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var teacher = await _context.teacher.FindAsync(id);
             _context.teacher.Remove(teacher);
@@ -144,7 +144,7 @@ namespace TeacherStudentDB.Views
             return RedirectToAction(nameof(Index));
         }
 
-        private bool teacherExists(int id)
+        private bool teacherExists(string id)
         {
             return _context.teacher.Any(e => e.teacherId == id);
         }
