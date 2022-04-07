@@ -19,9 +19,18 @@ namespace TeacherStudentDB.Views
         }
 
         // GET: students
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchstring)
         {
-            return View(await _context.student.ToListAsync());
+            ViewData["CurrentFilter"] = searchstring;
+            var studentsearch = from s in _context.student
+                                select s;
+            if (!string.IsNullOrEmpty(searchstring))
+            {
+                studentsearch = studentsearch.Where(s => s.firstName.Contains(searchstring)
+                                                  || s.lastName.Contains(searchstring));                                                 
+            }
+            return View(await studentsearch.AsNoTracking().ToListAsync());
+
         }
 
         // GET: students/Details/5
